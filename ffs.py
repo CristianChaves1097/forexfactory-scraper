@@ -346,7 +346,10 @@ def scrape_range_with_details(
             current = datetime(next_month_candidate.year, next_month_candidate.month, 1, tzinfo=current.tzinfo)
 
     finally:
-        driver.quit()
+        try:
+            driver.quit()
+        except Exception as e:
+                print(f"Error during driver.quit(): {e}")
 
     print(f"[LOG] Done. Total events with details: {total_events}")
 
